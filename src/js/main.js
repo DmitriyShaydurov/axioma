@@ -81,6 +81,7 @@ function updatePosition() {
   ajaxGet(vars);
 }
 
+
 // import{ Core } from './Core.js';
 // let core = new Core(urlRoot, 'workers');
 

@@ -7,7 +7,7 @@ const clean = require('gulp-clean');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 
-gulp.task('minifyjs', function () {
+gulp.task('minifyjs', ['jscustom'], function () {
   return gulp.src('src/js/*.js')
     .pipe(babel({
         // presets: ['es2015']
@@ -44,13 +44,20 @@ gulp.task('js', function () {
     .pipe(browserSync.stream());
 });
 
+// Move JS custom files to src/js/custom
+gulp.task('jscustom', function () {
+  return gulp.src('src/js/js6/*.js')
+    .pipe(gulp.dest('build/public/js/custom'))
+    .pipe(browserSync.stream());
+});
+
 // Watch Sass & Server
 gulp.task('serve', ['cssmin'], function () {
   browserSync.init({
     //server: './src'
     proxy: 'localhost/hrd/build'
   });
-  gulp.watch('src/js/*.js', ['minifyjs']);
+  gulp.watch('src/js/**/*.js', ['minifyjs']);
   gulp.watch(['node_modules/bootstrap/scss/bootstrap.scss', 'src/scss/*.scss'], ['cssmin']);
   gulp.watch('build/app/views/pages/*.php').on('change', browserSync.reload);
 });

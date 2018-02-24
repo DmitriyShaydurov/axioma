@@ -111,5 +111,5 @@
   </div>
 
   </section>
-
+<script>const pageName='positions';</script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
