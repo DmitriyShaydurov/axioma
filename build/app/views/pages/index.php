@@ -114,5 +114,5 @@
       </div>
     </div>
   </section>
-
-<?php require APPROOT . '/views/inc/footer.php'; ?>
+<script>const pageName='home';</script>
+<?php $title=''; require APPROOT . '/views/inc/footer.php'; ?>

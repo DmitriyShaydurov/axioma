@@ -4,16 +4,16 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse">
+      <div class="collapse navbar-collapse"id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active" id="home-pg">
+          <li class="nav-item" id="home-pg">
             <a class="nav-link" href="<?php echo URLROOT; ?>">Домашняя</a>
           </li>
           <li class="nav-item"  id="workers-pg">
-            <a class="nav-link" href="<?php echo URLROOT; ?>/pages/workers">Работники</a>
+            <a class="nav-link" href="<?php echo URLROOT; ?>/Workers/showWorkers">Работники</a>
           </li>
           <li class="nav-item" id="positions-pg">
-            <a class="nav-link" href="<?php echo URLROOT; ?>/positions/showPositions">Должности</a>
+            <a class="nav-link" href="<?php echo URLROOT; ?>/Positions/showPositions">Должности</a>
           </li>
         </ul>
         <!-- <ul class="navbar-nav ml-auto">

@@ -3,11 +3,11 @@
 
 
 <!-- Positions -->
-  <section  class="d-none d-md-block mt-4" id="posts">
+  <section  class="mt-4" id="posts">
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="card text-dark bg-light">
+          <div class="card text-dark bg-light d-none d-md-block">
             <div class="card-header">
               <h4>Cписок должностей</h4>
               <a href="details.html" class="btn btn-success" data-toggle="modal" data-target="#addModal" >
@@ -44,9 +44,13 @@
                   </tbody>
             </table>
           </div>
-        </div>
+
+            <?php require APPROOT . '/views/inc/notice.php'; ?>
+
       </div>
     </div>
+
+
 
   <!-- Add MODAL -->
   <div class="modal fade" id="addModal">

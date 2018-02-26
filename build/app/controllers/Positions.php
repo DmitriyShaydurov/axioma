@@ -25,6 +25,7 @@
       {
           $d = $this->positionModel->addPosition($name, $description);
       }
+
       public function updatePosition($id, $name, $description)
       {
           $data['id']=          $id;
