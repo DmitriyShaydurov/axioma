@@ -39,11 +39,11 @@
                  <img class="card-img-top  d-none d-lg-block" src="<?php echo URLROOT; ?>/img/meeting.jpg" alt="meeting">
                  <div class="card-body">
                      <h4 class="card-title">HRD Dashboard</h4>
-                      <h5  class="d-block d-lg-none  py-2">Редактирование</h5>
+                      <p class="d-block d-lg-none py-2"><i class="fa fa-users"></i></p>
                       <a href="<?php echo URLROOT; ?>/positions/showPositions" class="btn btn-outline-light btn-block d-none d-lg-block">Редактировать должности</a>
-                      <a href="<?php echo URLROOT; ?>/pages/workers" class="btn btn-outline-light btn-block mt-4  d-none d-lg-block">Редактировать работников</a>
+                      <a href="<?php echo URLROOT; ?>/Workers/showWorkers" class="btn btn-outline-light btn-block mt-4  d-none d-lg-block">Редактировать работников</a>
                       <a href="<?php echo URLROOT; ?>/positions/showPositions" class="btn btn-outline-light btn-block d-block d-lg-none ">Должности</a>
-                      <a href="<?php echo URLROOT; ?>/pages/workers" class="btn btn-outline-light btn-block mt-4  d-block d-lg-none ">Работников</a>
+                      <a href="<?php echo URLROOT; ?>/Workers/showWorkers" class="btn btn-outline-light btn-block mt-4  d-block d-lg-none ">Работники</a>
                  </div>
              </div>
            </div>

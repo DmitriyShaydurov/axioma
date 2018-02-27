@@ -26,7 +26,7 @@
       }
 
 
-      public function addWorker($name, $surName, $position, $salary, $description)
+      public function addWorker($name, $surName, $position, $salary=0, $description)
       {
           $d = $this->workerModel->addWorker($name, $surName, $position, $salary, $description);
       }
@@ -37,10 +37,10 @@
           $d = $this->workerModel->updateWorker($id, $name, $surName, $position, $salary, $description);
       }
 
-      public function echoWorkers()
+      public function echoWorkers($sort='ASC', $pos='id')
       {
           // Get workers
-          $data = $this->workerModel->getWorkers();
+          $data = $this->workerModel->getWorkers($sort, $pos);
 
           // form view
 

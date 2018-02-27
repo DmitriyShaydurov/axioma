@@ -17,12 +17,16 @@
 
             <table class="table  table-striped">
               <thead class="thead-inverse">
-                <tr>
+                <tr id="tbl-header">
                   <th>#</th>
-                  <th>Имя</th>
-                  <th>Фамилия</th>
-                  <th>Должность</th>
-                  <th>З/п</th>
+                  <th id="name-btn">Имя <button  class="btn btn-outline-secondary btn-sm"  onclick="sort('name')">
+                           <i class="fa fa-sort"></i></button></th>
+                  <th id="sur-name-btn">Фамилия <button  class="btn btn-outline-secondary btn-sm"  onclick="sort('sname')">
+                           <i class="fa fa-sort"></i></button></th>
+                  <th id="pos-btn">Должность <button  class="btn btn-outline-secondary btn-sm"  onclick="sort('pos')">
+                           <i class="fa fa-sort"></i></button></th>
+                  <th id="salary-btn">З/п <button  class="btn btn-outline-secondary btn-sm"  onclick="sort('sal')">
+                           <i class="fa fa-sort"></i></button></th>
                   <th></th>
                   <th></th>
                 </tr>
@@ -63,11 +67,14 @@
           <button class="close" data-dismiss="modal"><span>&times;</span></button>
         </div>
         <div class="modal-body">
-          <form action="<?php echo URLROOT; ?>/editors/position" method="post">
+          <!-- <form action="<php echo URLROOT; ?>/editors/position" method="post"> -->
+          <form>
           <div class="row">
             <div class="col-lg-6 form-group">
               <label>Имя</label>
-              <input type="text" id="wrkr-name" class="form-control">
+              <input type="text" id="wrkr-name" class="form-control  is-invalid">
+              <div class="invalid-feedback">Password does not match</div>
+
             </div>
             <div class="col-lg-6 form-group">
               <label >Фамилия</label>
@@ -96,12 +103,12 @@
               <label >Характеристика</label>
               <textarea  id="wrkr-desc" class="form-control"></textarea>
             </div>
-
           </form>
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <input type="submit" value= "Добавить" class="btn btn-success" data-dismiss="modal" onclick="addWorker()">
+          <!-- <input type="submit" value= "Добавить" class="btn btn-success" data-dismiss="modal" onclick="addWorker()"> -->
+          <button class="btn btn-success" data-dismiss="modal" onclick="addWorker()">Добавить</button>
         </div>
       </div>
     </div>
@@ -139,7 +146,6 @@
                     }
                  ?>
               </select>
-
             </div>
             <div class="col-lg-6 form-group">
               <label >Зарплата</label>

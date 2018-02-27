@@ -2,6 +2,7 @@
 const posList     = document.querySelector('.collection');
 const delAction   = '/Positions/deletePosition/';
 const showAction  = '/Positions/echoPositions/';
+const showParams  = '';
 
 function viewPosition(id) {
   let description = document.getElementById('upd-description');
@@ -36,6 +37,6 @@ function updatePosition() {
   let description =  document.getElementById('upd-description').value;
   let id =  document.getElementById('upd-id').value;
   let vars = `${urlRoot}/positions/updatePosition/${id}/${name}/${description}`;
-  console.log(vars);
+
   ajaxGet(vars);
 }

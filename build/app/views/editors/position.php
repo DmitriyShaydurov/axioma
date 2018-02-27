@@ -44,9 +44,7 @@
                   </tbody>
             </table>
           </div>
-
             <?php require APPROOT . '/views/inc/notice.php'; ?>
-
       </div>
     </div>
 

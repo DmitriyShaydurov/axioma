@@ -12,9 +12,9 @@ function activePage() {
 
   // add active state for current page
   switch (pageName) {
-    case 'workers':      items[1].classList.add('active');
+    case 'workers':       items[1].classList.add('active');
       break;
-    case 'positions':    items[2].classList.add('active');
+    case 'positions':     items[2].classList.add('active');
       break;
     case 'home':          items[0].classList.add('active');
   }
@@ -42,7 +42,7 @@ function delPosition(id) {
 
 function showPositions() {
 
-  let vars = urlRoot + showAction;
+  let vars = urlRoot + showAction + showParams;
   let hr = new XMLHttpRequest();
 
   hr.open('GET', vars, true);

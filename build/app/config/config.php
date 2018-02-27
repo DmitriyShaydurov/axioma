@@ -10,6 +10,6 @@
   // URL Root
   define('URLROOT', 'http://localhost/hrd/build');
   // Site Name
-  define('SITENAME', 'HR Department');
+  define('SITENAME', '<span class="text-danger font-weight-bold">HR</span>Department');
   // App Version
   define('APPVERSION', '1.0.0');

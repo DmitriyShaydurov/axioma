@@ -8,20 +8,22 @@
           $this->db = new Database;
       }
 
-      public function getWorkers()
+      public function getWorkers($sort='ASC', $pos='id')
       {
-          $this->db->query('SELECT worker.id,  worker.name,  worker.surname,  worker.salary, position.pos_name
-                            FROM worker
-                            INNER JOIN position
-                            ON position.id=worker.position_id
-                            ');
+          $this->db->query(
+           'SELECT worker.id,  worker.name,  worker.surname,  worker.salary, position.pos_name
+            FROM worker
+            INNER JOIN position
+            ON position.id=worker.position_id
+            ORDER BY '.$pos.' '.$sort
+            );
 
           $results = $this->db->resultSet();
 
           return $results;
       }
 
-      public function addWorker($name, $surName, $position, $salary, $description)
+      public function addWorker($name, $surName, $position, $salary=0, $description)
       {
           $this->db->query('INSERT INTO worker (name, surname, position_id, salary, Characteristics)
                             VALUES (:name, :surname, :position_id, :salary, :Characteristics)');
