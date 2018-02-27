@@ -41,6 +41,7 @@ function viewPosition(id) {
 }
 
 function addWorker() {
+
   let name        =   document.getElementById('wrkr-name');
   let surName     =   document.getElementById('wrkr-sur-name');
   let position    =   document.getElementById('wrkr-pos');
@@ -49,7 +50,8 @@ function addWorker() {
   let re          =  /^[a-zа-яё\s]+$/iu;
 
   let vars =
-  `${urlRoot}/Workers/addWorker/${name.value}/${surName.value}/${position.value}/${salary.value}/${description.value}`;
+  `${urlRoot}/Workers/addWorker/${name.value}/${surName.value}/
+  ${position.value}/${salary.value}/${description.value}`;
   ajaxGet(vars);
 }
 
@@ -132,12 +134,12 @@ function btnSwitch(btn) {
     return 'DESC';}
 }
 
-function sortByName() {
-  sortNameBtn = btnSwitch(sortNameBtn);
-  SortButtonsStatus(sortNameBtn, 'name');
-  showParams = `${sortNameBtn}/name`;
-  showPositions();
-}
+// function sortByName() {
+//   sortNameBtn = btnSwitch(sortNameBtn);
+//   SortButtonsStatus(sortNameBtn, 'name');
+//   showParams = `${sortNameBtn}/name`;
+//   showPositions();
+// }
 
 function sort(param) {
 
@@ -172,17 +174,94 @@ function sort(param) {
 
 }
 
-function sortBySname() {
-  sortSnameBtn = btnSwitch(sortSnameBtn);
-  SortButtonsStatus(sortSnameBtn, 'sname');
+// function sortBySname() {
+//   sortSnameBtn = btnSwitch(sortSnameBtn);
+//   SortButtonsStatus(sortSnameBtn, 'sname');
+// }
+//
+// function sortByPos() {
+//   sortPosBtn = btnSwitch(sortPosBtn);
+//   SortButtonsStatus(sortPosBtn, 'pos');
+// }
+//
+// function sortBySal() {
+//   sortSalBtn = btnSwitch(sortSalBtn);
+//   SortButtonsStatus(sortSalBtn, 'sal');
+// }
+//suggest tag input & check it
+
+function checked(id, text) {
+  let ok = false;
+  let name = document.getElementById(id);
+  let re;
+  if (!text && name.value == '') {
+    if (name.classList.contains('is-invalid')) {
+      name.classList.remove('is-invalid');
+      name.classList.add('is-valid');
+    }
+
+    ok = true;
+    return ok;
+  }
+
+  if (text) {re = /^[a-zа-яё]+$/iu;} else {re = /^[1-9]{1}[\d]*[,]{0,1}\d{0,2}$/;}
+
+     // '/^[a-zа-яё\s]+$/iu' c пробелами
+
+  if (!re.test(name.value)) {
+    if (!name.classList.contains('is-invalid')) {
+      name.classList.add('is-invalid');
+      ok = false;
+    }
+  }else {
+    ok = true;
+    if (name.classList.contains('is-invalid')) {
+      name.classList.remove('is-invalid');
+    }
+
+    if (!name.classList.contains('is-valid')) {
+      name.classList.add('is-valid');
+    }
+  }
+
+  return ok;
 }
 
-function sortByPos() {
-  sortPosBtn = btnSwitch(sortPosBtn);
-  SortButtonsStatus(sortPosBtn, 'pos');
+function checkOk() {
+  let but = document.getElementById('add-btn');
+  let inf = document.getElementById('add-info');
+
+  if (checked('wrkr-name', true) &&
+      checked('wrkr-sur-name', true) &&
+      checked('wrkr-slr', false)) {
+
+    inf.classList.remove('bg-info');
+    inf.classList.add('bg-success');
+    inf.innerHTML = 'Форма готова к отправке';
+
+    but.classList.remove('d-none');
+    return true;
+  }else {
+    inf.classList.remove('bg-success');
+    inf.classList.add('bg-info');
+    inf.innerHTML = 'Для добавления работника корректно заполните форму';
+    but.classList.add('d-none');
+    return false;
+  }
 }
 
-function sortBySal() {
-  sortSalBtn = btnSwitch(sortSalBtn);
-  SortButtonsStatus(sortSalBtn, 'sal');
-}
+document.getElementById('wrkr-name').addEventListener('keyup', function (e) {
+  let ok = checked('wrkr-name', true);
+  checkOk();
+
+});
+
+document.getElementById('wrkr-sur-name').addEventListener('keyup', function (e) {
+  checked('wrkr-sur-name', true);
+  checkOk();
+});
+
+document.getElementById('wrkr-slr').addEventListener('keyup', function (e) {
+  checked('wrkr-slr', false);
+  checkOk();
+});

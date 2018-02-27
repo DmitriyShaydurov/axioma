@@ -1,5 +1,9 @@
+<?php $s=explode(' ', SITENAME, 2);
+$siteN='<span  class="text-danger font-weight-bold">'.$s[0].'</span> '.$s[1];
+?>
+
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-      <a class="navbar-brand" href="<?php echo URLROOT; ?>"><?php echo SITENAME; ?></a>
+      <a class="navbar-brand" href="<?php echo URLROOT; ?>"><?php echo $siteN ; ?></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

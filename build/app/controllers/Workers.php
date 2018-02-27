@@ -26,13 +26,13 @@
       }
 
 
-      public function addWorker($name, $surName, $position, $salary=0, $description)
+      public function addWorker($name, $surName, $position, $salary=0, $description=' ')
       {
           $d = $this->workerModel->addWorker($name, $surName, $position, $salary, $description);
       }
 
 
-      public function updateWorker($id, $name, $surName, $position, $salary, $description)
+      public function updateWorker($id, $name, $surName, $position, $salary, $description=' ')
       {
           $d = $this->workerModel->updateWorker($id, $name, $surName, $position, $salary, $description);
       }

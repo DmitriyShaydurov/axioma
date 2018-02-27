@@ -67,18 +67,18 @@
           <button class="close" data-dismiss="modal"><span>&times;</span></button>
         </div>
         <div class="modal-body">
-          <!-- <form action="<php echo URLROOT; ?>/editors/position" method="post"> -->
           <form>
           <div class="row">
             <div class="col-lg-6 form-group">
               <label>Имя</label>
-              <input type="text" id="wrkr-name" class="form-control  is-invalid">
-              <div class="invalid-feedback">Password does not match</div>
+              <input type="text" id="wrkr-name" class="form-control">
+              <div class="invalid-feedback">Обязательное поле, допустимы буквы без пробелов.</div>
 
             </div>
             <div class="col-lg-6 form-group">
               <label >Фамилия</label>
                <input type="text" id="wrkr-sur-name" class="form-control">
+               <div class="invalid-feedback">Обязательное поле, допустимы буквы без пробелов.</div>
             </div>
           </div>
           <div class="row">
@@ -95,8 +95,9 @@
 
             </div>
             <div class="col-lg-6 form-group">
-              <label >Зарплата</label>
+              <label >Зарплата в 	&#8364;</label>
                <input type="text" id="wrkr-slr" class="form-control">
+               <div class="invalid-feedback">Введите число в формате XXX,XX</div>
             </div>
           </div>
             <div class="form-group">
@@ -105,17 +106,16 @@
             </div>
           </form>
         </div>
+        <span id='add-info' class="text-center bg-info text-white">Для добавления работника корректно заполните форму</span>
         <div class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <!-- <input type="submit" value= "Добавить" class="btn btn-success" data-dismiss="modal" onclick="addWorker()"> -->
-          <button class="btn btn-success" data-dismiss="modal" onclick="addWorker()">Добавить</button>
+          <button id= "add-btn" class="btn btn-success d-none" data-dismiss="modal" onclick="addWorker()">Добавить</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Edit MODAL -->
-
   <div class="modal fade" id="editModal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -124,7 +124,7 @@
           <button class="close" data-dismiss="modal"><span>&times;</span></button>
         </div>
         <div class="modal-body">
-          <form action="<?php echo URLROOT; ?>/editors/position" method="post">
+          <form>
           <div class="row">
             <div class="col-lg-6 form-group">
               <label>Имя</label>
@@ -159,9 +159,9 @@
             <input type="text" id="upd-id" class="form-control d-none">
           </form>
         </div>
-        <div class="modal-footer">
+        <div  class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <input type="submit" value= "Cохранить" class="btn btn-info" data-dismiss="modal" onclick="updateWorker()">
+          <button class="btn btn-info" data-dismiss="modal" onclick="updateWorker()">Сохранить</button>
         </div>
       </div>
     </div>
