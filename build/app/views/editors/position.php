@@ -63,6 +63,7 @@
             <div class="form-group">
               <label>Название должности</label>
               <input type="text" id="pos-name" class="form-control">
+              <div class="invalid-feedback">Обязательное поле, допустимы только буквы.</div>
             </div>
 
             <div class="form-group">
@@ -71,9 +72,10 @@
             </div>
           </form>
         </div>
+          <span id='add-info' class="text-center bg-info text-white">Заполните форму для выполнения операции</span>
         <div class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <input type="submit" value= "Добавить" class="btn btn-success" data-dismiss="modal" onclick="addPosition()">
+          <input id= "add-btn" type="submit" value= "Добавить" class="btn btn-success d-none" data-dismiss="modal" onclick="addPosition()">
         </div>
       </div>
     </div>
@@ -92,6 +94,7 @@
             <div class="form-group">
               <label >Название должности</label>
               <input type="text" id="upd-pos-name" class="form-control">
+              <div class="invalid-feedback">Обязательное поле, допустимы только буквы.</div>
             </div>
 
             <div class="form-group d-none">
@@ -104,9 +107,10 @@
             </div>
           </form>
         </div>
+        <span id='upd-info' class="text-center bg-info text-white">Заполните форму для выполнения операции</span>
         <div class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <button id="save-pos" class="btn btn-primary" data-dismiss="modal" onclick="updatePosition()">Сохранить</button>
+          <button id="save-pos" class="btn btn-primary d-none" data-dismiss="modal" onclick="updatePosition()">Сохранить</button>
         </div>
       </div>
     </div>

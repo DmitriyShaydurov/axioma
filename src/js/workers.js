@@ -1,15 +1,23 @@
 
-const posList     = document.querySelector('.collection');
-const delAction   = '/Workers/deleteWorker/';
-const showAction  = '/Workers/echoWorkers/';
-const tableHeader = document.getElementById('tbl-header').innerHTML;
+const posList     = document.querySelector('.collection');// get tbody
+const delAction   = '/Workers/deleteWorker/';//controller&model call for delete action
+const showAction  = '/Workers/echoWorkers/';//controller&model call for show action
+const tableHeader = document.getElementById('tbl-header').innerHTML;// get tr
+
+// prepare regExps for validation
+// const moneyPattern      =  /^[1-9]{1}[\d]*[.]{0,1}\d{0,2}$/; // XX.XX
+// const lettersOnlyPattern = /^[a-zа-яё]+$/iu; //letters no spases
+
+//initialize params for show method
 let showParams  = '';
 
+//initialize varibles for sort buttons
 let sortNameBtn = '';
 let sortSnameBtn = '';
 let sortPosBtn = '';
 let sortSalBtn = '';
 
+// Make Ajax call to server to get current workers list
 function viewPosition(id) {
   let name        =   document.getElementById('upd-name');
   let surName     =   document.getElementById('upd-sur-name');
@@ -23,9 +31,7 @@ function viewPosition(id) {
   hr.open('GET', vars, true);
   hr.onreadystatechange = function () {
         if (hr.readyState == 4 && hr.status ==  200) {
-          // console.log(hr.responseText);
           let response = JSON.parse(hr.responseText);
-
           name.value        = response.name;
           surName.value     = response.surname;
           position.value    = response.position_id;
@@ -40,6 +46,7 @@ function viewPosition(id) {
 
 }
 
+//Prepare & send call of addWorker model method
 function addWorker() {
 
   let name        =   document.getElementById('wrkr-name');
@@ -47,7 +54,7 @@ function addWorker() {
   let position    =   document.getElementById('wrkr-pos');
   let salary      =   document.getElementById('wrkr-slr');
   let description =   document.getElementById('wrkr-desc');
-  let re          =  /^[a-zа-яё\s]+$/iu;
+  //let re          =  /^[a-zа-яё\s]+$/iu;
 
   let vars =
   `${urlRoot}/Workers/addWorker/${name.value}/${surName.value}/
@@ -55,6 +62,7 @@ function addWorker() {
   ajaxGet(vars);
 }
 
+//Prepare & send call of updateWorker model method
 function updateWorker() {
   let wId         =   document.getElementById('upd-id').value;
   let name        =   document.getElementById('upd-name').value;
@@ -134,13 +142,7 @@ function btnSwitch(btn) {
     return 'DESC';}
 }
 
-// function sortByName() {
-//   sortNameBtn = btnSwitch(sortNameBtn);
-//   SortButtonsStatus(sortNameBtn, 'name');
-//   showParams = `${sortNameBtn}/name`;
-//   showPositions();
-// }
-
+//Prepare parameters for getWorkers model method & send them to server
 function sort(param) {
 
   switch (param) {
@@ -166,102 +168,133 @@ function sort(param) {
   case 'sal':
     sortSalBtn = btnSwitch(sortSalBtn);
     SortButtonsStatus(sortSalBtn, 'sal');
-    showParams = `${sortSalBtn}/salary`;
-    break;
-  }
+    showParams = `${sortSalBtn}/salary`;}
 
   showPositions();
 
 }
 
-// function sortBySname() {
-//   sortSnameBtn = btnSwitch(sortSnameBtn);
-//   SortButtonsStatus(sortSnameBtn, 'sname');
-// }
+//Check input in accordance with RegExp pattern and change class of an input field
+// function checked(id, pattern) {
+//   let ok = false;
+//   let name = document.getElementById(id);
+//   let re = pattern; //assign RegExp
 //
-// function sortByPos() {
-//   sortPosBtn = btnSwitch(sortPosBtn);
-//   SortButtonsStatus(sortPosBtn, 'pos');
-// }
+//   if (re == moneyPattern && name.value == '') {
+//     if (name.classList.contains('is-invalid')) {
+//       name.classList.remove('is-invalid');
+//       name.classList.add('is-valid');
+//     }
 //
-// function sortBySal() {
-//   sortSalBtn = btnSwitch(sortSalBtn);
-//   SortButtonsStatus(sortSalBtn, 'sal');
+//     ok = true;
+//     return ok;
+//   }
+//
+//   //if (text) {re = /^[a-zа-яё]+$/iu;} else {re = /^[1-9]{1}[\d]*[,]{0,1}\d{0,2}$/;}
+//
+//      // '/^[a-zа-яё\s]+$/iu' c пробелами
+//
+//
+//
+//   if (!re.test(name.value)) {
+//     if (!name.classList.contains('is-invalid')) {
+//       name.classList.add('is-invalid');
+//       ok = false;
+//     }
+//   }else {
+//     ok = true;
+//     if (name.classList.contains('is-invalid')) {
+//       name.classList.remove('is-invalid');
+//     }
+//
+//     if (!name.classList.contains('is-valid')) {
+//       name.classList.add('is-valid');
+//     }
+//   }
+//
+//   return ok;
 // }
-//suggest tag input & check it
 
-function checked(id, text) {
-  let ok = false;
-  let name = document.getElementById(id);
-  let re;
-  if (!text && name.value == '') {
-    if (name.classList.contains('is-invalid')) {
-      name.classList.remove('is-invalid');
-      name.classList.add('is-valid');
-    }
-
-    ok = true;
-    return ok;
-  }
-
-  if (text) {re = /^[a-zа-яё]+$/iu;} else {re = /^[1-9]{1}[\d]*[,]{0,1}\d{0,2}$/;}
-
-     // '/^[a-zа-яё\s]+$/iu' c пробелами
-
-  if (!re.test(name.value)) {
-    if (!name.classList.contains('is-invalid')) {
-      name.classList.add('is-invalid');
-      ok = false;
-    }
-  }else {
-    ok = true;
-    if (name.classList.contains('is-invalid')) {
-      name.classList.remove('is-invalid');
-    }
-
-    if (!name.classList.contains('is-valid')) {
-      name.classList.add('is-valid');
-    }
-  }
-
-  return ok;
-}
-
-function checkOk() {
-  let but = document.getElementById('add-btn');
-  let inf = document.getElementById('add-info');
-
-  if (checked('wrkr-name', true) &&
-      checked('wrkr-sur-name', true) &&
-      checked('wrkr-slr', false)) {
-
-    inf.classList.remove('bg-info');
-    inf.classList.add('bg-success');
-    inf.innerHTML = 'Форма готова к отправке';
-
-    but.classList.remove('d-none');
+function allAddFieldsOk() {
+  if (checked('wrkr-name', lettersOnlyPattern) &&
+      checked('wrkr-sur-name', lettersOnlyPattern) &&
+      checked('wrkr-slr', moneyPattern)) {
+    console.log('true');
     return true;
   }else {
-    inf.classList.remove('bg-success');
-    inf.classList.add('bg-info');
-    inf.innerHTML = 'Для добавления работника корректно заполните форму';
-    but.classList.add('d-none');
+    console.log('false');
     return false;
   }
+
 }
 
-document.getElementById('wrkr-name').addEventListener('keyup', function (e) {
-  let ok = checked('wrkr-name', true);
-  checkOk();
+function allEditFieldsOk() {
+  if (checked('upd-name', lettersOnlyPattern) &&
+      checked('upd-sur-name', lettersOnlyPattern) &&
+      checked('upd-slr', moneyPattern)) {
+    console.log('true');
+    return true;
+  }else {
+    console.log('false');
+    return false;
+  }
 
+}
+
+// function checkOk(button, infLine, funct) {
+//   let but = document.getElementById(button);
+//   let inf = document.getElementById(infLine);
+//   let ok;
+//
+//   switch (funct) {
+//
+//   case 'add':
+//     ok = allAddFieldsOk();
+//     break;
+//   case 'edit':
+//     ok = allEditFieldsOk();}
+//
+//   if (ok) {
+//
+//     inf.classList.remove('bg-info');
+//     inf.classList.add('bg-success');
+//     inf.innerHTML = 'Форма готова к отправке';
+//
+//     but.classList.remove('d-none');
+//     return true;
+//   }else {
+//     inf.classList.remove('bg-success');
+//     inf.classList.add('bg-info');
+//     inf.innerHTML = 'Заполните форму для выполнения операции';
+//     but.classList.add('d-none');
+//     return false;
+//   }
+// }
+
+// add Modal EventListeners
+document.getElementById('wrkr-name').addEventListener('keyup', function (e) {
+  checkOk('add-btn', 'add-info', 'add');
 });
 
 document.getElementById('wrkr-sur-name').addEventListener('keyup', function (e) {
-  checked('wrkr-sur-name', true);
-  checkOk();
+  checkOk('add-btn', 'add-info', 'add');
 });
 
 document.getElementById('wrkr-slr').addEventListener('keyup', function (e) {
-  checked('wrkr-slr', false);
-  checkOk();
+  checkOk('add-btn', 'add-info', 'add');
+});
+
+// edit Modal EventListeners
+
+document.getElementById('upd-name').addEventListener('keyup', function (e) {
+  console.log('name');
+  checkOk('upd-btn', 'upd-info', 'edit');
+});
+
+document.getElementById('upd-sur-name').addEventListener('keyup', function (e) {
+  checkOk('upd-btn', 'upd-info', 'edit');
+});
+
+document.getElementById('upd-slr').addEventListener('keyup', function (e) {
+  checkOk('upd-btn', 'upd-info', 'edit');
 });

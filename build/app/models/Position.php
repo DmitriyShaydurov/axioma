@@ -17,7 +17,7 @@
           return $results;
       }
 
-      public function addPosition($position, $description)
+      public function addPosition($position, $description=' ')
       {
           $this->db->query('INSERT INTO position (pos_name, description) VALUES(:name, :description)');
           // Bind values

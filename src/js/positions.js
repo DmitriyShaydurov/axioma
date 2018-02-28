@@ -4,6 +4,9 @@ const delAction   = '/Positions/deletePosition/';
 const showAction  = '/Positions/echoPositions/';
 const showParams  = '';
 
+// prepare regExps for validation
+//const lettersPattern = /^[a-zа-яё\s]+$/iu; //letters only
+
 function viewPosition(id) {
   let description = document.getElementById('upd-description');
   let posId = document.getElementById('upd-id');
@@ -40,3 +43,31 @@ function updatePosition() {
 
   ajaxGet(vars);
 }
+
+function allAddFieldsOk() {
+  if (checked('pos-name', lettersPattern)) {
+    return true;
+  }else {
+    return false;
+  }
+}
+
+function allEditFieldsOk() {
+  if (checked('upd-pos-name', lettersPattern)) {
+    return true;
+  }else {
+    return false;
+  }
+
+}
+
+// add Modal EventListeners
+document.getElementById('pos-name').addEventListener('keyup', function (e) {
+  checkOk('add-btn', 'add-info', 'add');
+});
+
+// edit Modal EventListeners
+document.getElementById('upd-pos-name').addEventListener('keyup', function (e) {
+  console.log('name');
+  checkOk('save-pos', 'upd-info', 'edit');
+});

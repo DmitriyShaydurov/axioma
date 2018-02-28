@@ -21,12 +21,12 @@
           $d = $this->positionModel->deletePosition($id);
       }
 
-      public function addPosition($name, $description)
+      public function addPosition($name, $description=' ')
       {
           $d = $this->positionModel->addPosition($name, $description);
       }
 
-      public function updatePosition($id, $name, $description)
+      public function updatePosition($id, $name, $description=' ')
       {
           $data['id']=          $id;
           $data['name']=        $name;

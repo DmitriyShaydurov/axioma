@@ -21,7 +21,7 @@
                  <i class="fa fa-check"></i>
                </div>
                <div class="p-4 align-self-end">
-                 При создании использовались современные Front-end технологии: GULP, SASS, ECMAScript 6, Bootstrap 4.0.
+                 При создании использовались современные Front-end технологии: GULP, SASS, ECMAScript 6, Babel, Bootstrap 4.0.
                </div>
              </div>
 
@@ -60,7 +60,9 @@
         <div class="col text-center">
           <div class="py-5">
             <h1 class="display-4">Фотографии</h1>
-            <p class="lead">Все фотографии взяты с сайта pixels.com. Имиджи распространяются по лицензии CC0 которая предполагает бесплатное использование для любых целей. Особая благодарность  <a href="https://www.pexels.com/photo/people-coffee-meeting-team-7096/"> Eric Bailey,</a>  <a href="https://www.pexels.com/photo/adult-book-business-cactus-297755/">rawpixel.com</a></p>
+            <p class="lead">
+              Фотографии взяты с сайта pixels.com. Имиджи распространяются по лицензии CC0 которая предполагает бесплатное
+              использование для любых целей. Особая благодарность  <a href="https://www.pexels.com/photo/people-coffee-meeting-team-7096/"> Eric Bailey,</a>  <a href="https://www.pexels.com/photo/adult-book-business-cactus-297755/">rawpixel.com</a></p>
             <a href="https://www.pexels.com/photo-license/" class="btn btn-outline-secondary">Узнать больше</a>
           </div>
         </div>

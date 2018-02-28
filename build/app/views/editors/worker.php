@@ -10,9 +10,24 @@
           <div class="card text-dark bg-light d-none d-md-block">
             <div class="card-header">
               <h4>Cписок работников</h4>
-              <a href="details.html" class="btn btn-success" data-toggle="modal" data-target="#addModal" >
-                <i class="fa fa-users"></i> Добавить
-              </a>
+                  <div class="container">
+                    <div class="row">
+
+                    <?php
+                        if ($data['positions']) {
+                            echo '  <a href="details.html" class="btn btn-success" data-toggle="modal" data-target="#addModal" >
+                              <i class="fa fa-users"></i> Добавить
+                            </a>';
+                        } else {
+                            echo '<a href="'.URLROOT.'/Positions/showPositions" class="btn btn-success" >
+                            <i class="fa fa-users"></i> Добавить должности
+                          </a>';
+                        }
+                    ?>
+              <!-- <a href="details.html" class="btn btn-success" data-toggle="modal" data-target="#addModal" >
+                <i class="fa fa-users"></i> Добавить должности
+              </a> -->
+
             </div>
 
             <table class="table  table-striped">
@@ -97,7 +112,7 @@
             <div class="col-lg-6 form-group">
               <label >Зарплата в 	&#8364;</label>
                <input type="text" id="wrkr-slr" class="form-control">
-               <div class="invalid-feedback">Введите число в формате XXX,XX</div>
+               <div class="invalid-feedback">Введите число в формате XXX.XX</div>
             </div>
           </div>
             <div class="form-group">
@@ -106,7 +121,7 @@
             </div>
           </form>
         </div>
-        <span id='add-info' class="text-center bg-info text-white">Для добавления работника корректно заполните форму</span>
+        <span id='add-info' class="text-center bg-info text-white">Заполните форму для выполнения операции</span>
         <div class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
           <button id= "add-btn" class="btn btn-success d-none" data-dismiss="modal" onclick="addWorker()">Добавить</button>
@@ -129,10 +144,12 @@
             <div class="col-lg-6 form-group">
               <label>Имя</label>
               <input type="text" id="upd-name" class="form-control">
+              <div class="invalid-feedback">Обязательное поле, допустимы буквы без пробелов.</div>
             </div>
             <div class="col-lg-6 form-group">
               <label >Фамилия</label>
                <input type="text" id="upd-sur-name" class="form-control">
+               <div class="invalid-feedback">Обязательное поле, допустимы буквы без пробелов.</div>
             </div>
           </div>
           <div class="row">
@@ -150,6 +167,7 @@
             <div class="col-lg-6 form-group">
               <label >Зарплата</label>
                <input type="text" id="upd-slr" class="form-control">
+                <div class="invalid-feedback">Введите число в формате XXX.XX</div>
             </div>
           </div>
             <div class="form-group">
@@ -159,9 +177,10 @@
             <input type="text" id="upd-id" class="form-control d-none">
           </form>
         </div>
+        <span id='upd-info' class="text-center bg-info text-white">Заполните форму для выполнения операции</span>
         <div  class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <button class="btn btn-info" data-dismiss="modal" onclick="updateWorker()">Сохранить</button>
+          <button id="upd-btn" class="btn btn-info" data-dismiss="modal" onclick="updateWorker()">Сохранить</button>
         </div>
       </div>
     </div>
