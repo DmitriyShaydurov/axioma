@@ -4,9 +4,11 @@ const delAction   = '/Workers/deleteWorker/';//controller&model call for delete 
 const showAction  = '/Workers/echoWorkers/';//controller&model call for show action
 const tableHeader = document.getElementById('tbl-header').innerHTML;// get tr
 
-// prepare regExps for validation
-// const moneyPattern      =  /^[1-9]{1}[\d]*[.]{0,1}\d{0,2}$/; // XX.XX
-// const lettersOnlyPattern = /^[a-zа-яё]+$/iu; //letters no spases
+// // fields to be checked when adding worker
+// const addFieldNames = ['wrkr-name', 'wrkr-sur-name', 'wrkr-slr'];
+//
+// // fields to be checked when updating worker
+// const updFieldNames = ['upd-name', 'upd-sur-name', 'upd-slr'];
 
 //initialize params for show method
 let showParams  = '';
@@ -174,127 +176,62 @@ function sort(param) {
 
 }
 
-//Check input in accordance with RegExp pattern and change class of an input field
-// function checked(id, pattern) {
-//   let ok = false;
-//   let name = document.getElementById(id);
-//   let re = pattern; //assign RegExp
-//
-//   if (re == moneyPattern && name.value == '') {
-//     if (name.classList.contains('is-invalid')) {
-//       name.classList.remove('is-invalid');
-//       name.classList.add('is-valid');
-//     }
-//
-//     ok = true;
-//     return ok;
-//   }
-//
-//   //if (text) {re = /^[a-zа-яё]+$/iu;} else {re = /^[1-9]{1}[\d]*[,]{0,1}\d{0,2}$/;}
-//
-//      // '/^[a-zа-яё\s]+$/iu' c пробелами
-//
-//
-//
-//   if (!re.test(name.value)) {
-//     if (!name.classList.contains('is-invalid')) {
-//       name.classList.add('is-invalid');
-//       ok = false;
-//     }
-//   }else {
-//     ok = true;
-//     if (name.classList.contains('is-invalid')) {
-//       name.classList.remove('is-invalid');
-//     }
-//
-//     if (!name.classList.contains('is-valid')) {
-//       name.classList.add('is-valid');
-//     }
-//   }
-//
-//   return ok;
-// }
-
-function allAddFieldsOk() {
-  if (checked('wrkr-name', lettersOnlyPattern) &&
-      checked('wrkr-sur-name', lettersOnlyPattern) &&
-      checked('wrkr-slr', moneyPattern)) {
-    console.log('true');
-    return true;
-  }else {
-    console.log('false');
-    return false;
-  }
-
-}
-
-function allEditFieldsOk() {
-  if (checked('upd-name', lettersOnlyPattern) &&
-      checked('upd-sur-name', lettersOnlyPattern) &&
-      checked('upd-slr', moneyPattern)) {
-    console.log('true');
-    return true;
-  }else {
-    console.log('false');
-    return false;
-  }
-
-}
-
-// function checkOk(button, infLine, funct) {
-//   let but = document.getElementById(button);
-//   let inf = document.getElementById(infLine);
-//   let ok;
-//
-//   switch (funct) {
-//
-//   case 'add':
-//     ok = allAddFieldsOk();
-//     break;
-//   case 'edit':
-//     ok = allEditFieldsOk();}
-//
-//   if (ok) {
-//
-//     inf.classList.remove('bg-info');
-//     inf.classList.add('bg-success');
-//     inf.innerHTML = 'Форма готова к отправке';
-//
-//     but.classList.remove('d-none');
+// function allAddFieldsOk() {
+//   if (checked('wrkr-name', lettersOnlyPattern) &&
+//       checked('wrkr-sur-name', lettersOnlyPattern) &&
+//       checked('wrkr-slr', moneyPattern)) {
 //     return true;
 //   }else {
-//     inf.classList.remove('bg-success');
-//     inf.classList.add('bg-info');
-//     inf.innerHTML = 'Заполните форму для выполнения операции';
-//     but.classList.add('d-none');
 //     return false;
 //   }
+//
 // }
+//
+// function allEditFieldsOk() {
+//   if (checked('upd-name', lettersOnlyPattern) &&
+//       checked('upd-sur-name', lettersOnlyPattern) &&
+//       checked('upd-slr', moneyPattern)) {
+//     return true;
+//   }else {
+//     return false;
+//   }
+//
+// }
+
+function allFieldsOk(fieldNames) {
+  if (checked(fieldNames[0], lettersOnlyPattern) &&
+      checked(fieldNames[1], lettersOnlyPattern) &&
+      checked(fieldNames[2], moneyPattern)) {
+    return true;
+  }else {
+    return false;
+  }
+
+}
 
 // add Modal EventListeners
 document.getElementById('wrkr-name').addEventListener('keyup', function (e) {
-  checkOk('add-btn', 'add-info', 'add');
+  checkOk('add-btn', 'add-info', addFieldNames);
 });
 
 document.getElementById('wrkr-sur-name').addEventListener('keyup', function (e) {
-  checkOk('add-btn', 'add-info', 'add');
+  checkOk('add-btn', 'add-info', addFieldNames);
 });
 
 document.getElementById('wrkr-slr').addEventListener('keyup', function (e) {
-  checkOk('add-btn', 'add-info', 'add');
+  checkOk('add-btn', 'add-info', addFieldNames);
 });
 
 // edit Modal EventListeners
 
 document.getElementById('upd-name').addEventListener('keyup', function (e) {
-  console.log('name');
-  checkOk('upd-btn', 'upd-info', 'edit');
+  checkOk('upd-btn', 'upd-info', updFieldNames);
 });
 
 document.getElementById('upd-sur-name').addEventListener('keyup', function (e) {
-  checkOk('upd-btn', 'upd-info', 'edit');
+  checkOk('upd-btn', 'upd-info', updFieldNames);
 });
 
 document.getElementById('upd-slr').addEventListener('keyup', function (e) {
-  checkOk('upd-btn', 'upd-info', 'edit');
+  checkOk('upd-btn', 'upd-info', updFieldNames);
 });

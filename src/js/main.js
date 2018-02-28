@@ -3,6 +3,18 @@ const lettersPattern = /^[a-zа-яё\s]+$/iu; //letters only
 const moneyPattern      =  /^[1-9]{1}[\d]*[.]{0,1}\d{0,2}$/; // XX.XX
 const lettersOnlyPattern = /^[a-zа-яё]+$/iu; //letters no spases
 
+// fields to be checked when adding worker
+const addFieldNames = ['wrkr-name', 'wrkr-sur-name', 'wrkr-slr'];
+
+// fields to be checked when updating worker
+const updFieldNames = ['upd-name', 'upd-sur-name', 'upd-slr'];
+
+// fields to be checked when adding positio
+const addWrFieldNames = ['pos-name'];
+
+// fields to be checked when updating position
+const updWrFieldNames = ['upd-pos-name'];
+
 // make current navbar link active
 function activePage() {
 
@@ -60,18 +72,20 @@ function showPositions() {
 }
 
 // hide or show specifyed button and show information lines
-function checkOk(button, infLine, funct) {
+function checkOk(button, infLine, fnames) {
   let but = document.getElementById(button);
   let inf = document.getElementById(infLine);
   let ok;
 
-  switch (funct) {
+  // switch (funct) {
+  //
+  // case 'add':
+  //   ok = allFieldsOk(addFieldNames);
+  //   break;
+  // case 'edit':
+  //   ok = allFieldsOk(updFieldNames);}
 
-  case 'add':
-    ok = allAddFieldsOk();
-    break;
-  case 'edit':
-    ok = allEditFieldsOk();}
+  ok = allFieldsOk(fnames);
 
   if (ok) {
 
@@ -105,12 +119,6 @@ function checked(id, pattern) {
     return ok;
   }
 
-  //if (text) {re = /^[a-zа-яё]+$/iu;} else {re = /^[1-9]{1}[\d]*[,]{0,1}\d{0,2}$/;}
-
-     // '/^[a-zа-яё\s]+$/iu' c пробелами
-
-
-
   if (!re.test(name.value)) {
     if (!name.classList.contains('is-invalid')) {
       name.classList.add('is-invalid');
@@ -129,7 +137,5 @@ function checked(id, pattern) {
 
   return ok;
 }
-
-
 
 activePage();
