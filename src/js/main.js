@@ -77,14 +77,7 @@ function checkOk(button, infLine, fnames) {
   let inf = document.getElementById(infLine);
   let ok;
 
-  // switch (funct) {
-  //
-  // case 'add':
-  //   ok = allFieldsOk(addFieldNames);
-  //   break;
-  // case 'edit':
-  //   ok = allFieldsOk(updFieldNames);}
-
+  // perform client side validation if ok perform server side validation
   ok = allFieldsOk(fnames);
 
   if (ok) {
@@ -92,7 +85,6 @@ function checkOk(button, infLine, fnames) {
     inf.classList.remove('bg-info');
     inf.classList.add('bg-success');
     inf.innerHTML = 'Форма готова к отправке';
-
     but.classList.remove('d-none');
     return true;
   }else {
@@ -104,6 +96,7 @@ function checkOk(button, infLine, fnames) {
   }
 }
 
+// validate field  in acordance with RegExp
 function checked(id, pattern) {
   let ok = false;
   let name = document.getElementById(id);
@@ -120,12 +113,23 @@ function checked(id, pattern) {
   }
 
   if (!re.test(name.value)) {
-    if (!name.classList.contains('is-invalid')) {
-      name.classList.add('is-invalid');
-      ok = false;
-    }
+    ok = false;
   }else {
     ok = true;
+  }
+
+  setFieldClass(name, ok);
+
+  return ok;
+}
+
+// set 'is-valid' class if field value is correct and 'is-invalid' if not
+function  setFieldClass(name, ok) {
+  if (!ok) {
+    if (!name.classList.contains('is-invalid')) {
+      name.classList.add('is-invalid');
+    }
+  }else {
     if (name.classList.contains('is-invalid')) {
       name.classList.remove('is-invalid');
     }
@@ -135,7 +139,11 @@ function checked(id, pattern) {
     }
   }
 
-  return ok;
+  // return;
+}
+
+function serverErr() {
+  document.getElementById('server-err').classList.add('d-none');
 }
 
 activePage();

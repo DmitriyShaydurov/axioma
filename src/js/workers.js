@@ -4,12 +4,6 @@ const delAction   = '/Workers/deleteWorker/';//controller&model call for delete 
 const showAction  = '/Workers/echoWorkers/';//controller&model call for show action
 const tableHeader = document.getElementById('tbl-header').innerHTML;// get tr
 
-// // fields to be checked when adding worker
-// const addFieldNames = ['wrkr-name', 'wrkr-sur-name', 'wrkr-slr'];
-//
-// // fields to be checked when updating worker
-// const updFieldNames = ['upd-name', 'upd-sur-name', 'upd-slr'];
-
 //initialize params for show method
 let showParams  = '';
 
@@ -49,29 +43,28 @@ function viewPosition(id) {
 }
 
 //Prepare & send call of addWorker model method
-function addWorker() {
-
-  let name        =   document.getElementById('wrkr-name');
-  let surName     =   document.getElementById('wrkr-sur-name');
-  let position    =   document.getElementById('wrkr-pos');
-  let salary      =   document.getElementById('wrkr-slr');
-  let description =   document.getElementById('wrkr-desc');
-  //let re          =  /^[a-zа-яё\s]+$/iu;
+function addWorker(name, surName, position, salary, description) {
+  //
+  // let name        =   document.getElementById('wrkr-name');
+  // let surName     =   document.getElementById('wrkr-sur-name');
+  // let position    =   document.getElementById('wrkr-pos');
+  // let salary      =   document.getElementById('wrkr-slr');
+  // let description =   document.getElementById('wrkr-desc');
 
   let vars =
-  `${urlRoot}/Workers/addWorker/${name.value}/${surName.value}/
-  ${position.value}/${salary.value}/${description.value}`;
+  `${urlRoot}/Workers/addWorker/${name}/${surName}/
+  ${position}/${salary}/${description}`;
   ajaxGet(vars);
 }
 
 //Prepare & send call of updateWorker model method
-function updateWorker() {
-  let wId         =   document.getElementById('upd-id').value;
-  let name        =   document.getElementById('upd-name').value;
-  let surName     =   document.getElementById('upd-sur-name').value;
-  let position    =   document.getElementById('upd-pos').value;
-  let salary      =   document.getElementById('upd-slr').value;
-  let description =   document.getElementById('upd-desc').value;
+function updateWorker(wId, name, surName, position, salary, description) {
+  // let wId         =   document.getElementById('upd-id').value;
+  // let name        =   document.getElementById('upd-name').value;
+  // let surName     =   document.getElementById('upd-sur-name').value;
+  // let position    =   document.getElementById('upd-pos').value;
+  // let salary      =   document.getElementById('upd-slr').value;
+  // let description =   document.getElementById('upd-desc').value;
 
   let vars =
   `${urlRoot}/Workers/updateWorker/${wId}/${name}/${surName}/${position}/${salary}/${description}`;
@@ -176,28 +169,6 @@ function sort(param) {
 
 }
 
-// function allAddFieldsOk() {
-//   if (checked('wrkr-name', lettersOnlyPattern) &&
-//       checked('wrkr-sur-name', lettersOnlyPattern) &&
-//       checked('wrkr-slr', moneyPattern)) {
-//     return true;
-//   }else {
-//     return false;
-//   }
-//
-// }
-//
-// function allEditFieldsOk() {
-//   if (checked('upd-name', lettersOnlyPattern) &&
-//       checked('upd-sur-name', lettersOnlyPattern) &&
-//       checked('upd-slr', moneyPattern)) {
-//     return true;
-//   }else {
-//     return false;
-//   }
-//
-// }
-
 function allFieldsOk(fieldNames) {
   if (checked(fieldNames[0], lettersOnlyPattern) &&
       checked(fieldNames[1], lettersOnlyPattern) &&
@@ -206,10 +177,61 @@ function allFieldsOk(fieldNames) {
   }else {
     return false;
   }
+}
+
+// perform server check,if passed - run addWorker or updateworker metod
+// if not passed display message
+function serverCheck(add) {
+  let name;
+  let wId;
+  let surName;
+  let position;
+  let salary;
+  let description;
+
+  if (add) {
+    name        =   document.getElementById('wrkr-name').value;
+    surName     =   document.getElementById('wrkr-sur-name').value;
+    position    =   document.getElementById('wrkr-pos').value;
+    salary      =   document.getElementById('wrkr-slr').value;
+    description =   document.getElementById('wrkr-desc').value;
+  }else {
+    wId         =   document.getElementById('upd-id').value;
+    name        =   document.getElementById('upd-name').value;
+    surName     =   document.getElementById('upd-sur-name').value;
+    position    =   document.getElementById('upd-pos').value;
+    salary      =   document.getElementById('upd-slr').value;
+    description =   document.getElementById('upd-desc').value;
+  }
+
+  let vars = `${urlRoot}/Workers/checkWorker/${name}/${surName}/${salary}`;
+  let hr = new XMLHttpRequest();
+  hr.open('GET', vars, true);
+  hr.onreadystatechange = function () {
+          if (hr.readyState == 4 && hr.status ==  200) {
+            let response = hr.responseText;
+            console.log(response);
+            if (response == 'ok') {
+              if (add) {
+                addWorker(name, surName, position, salary, description);
+              } else {
+                updateWorker(wId, name, surName, position, salary, description);
+              }
+            } else {
+              //dispay warning message
+              let btn = document.getElementById('server-err');
+              if (btn.classList.contains('d-none')) {
+                btn.classList.remove('d-none');
+              }
+            }
+          }
+        };
+
+  hr.send(vars);
 
 }
 
-// add Modal EventListeners
+// set 'add Modal' EventListeners
 document.getElementById('wrkr-name').addEventListener('keyup', function (e) {
   checkOk('add-btn', 'add-info', addFieldNames);
 });
@@ -222,7 +244,7 @@ document.getElementById('wrkr-slr').addEventListener('keyup', function (e) {
   checkOk('add-btn', 'add-info', addFieldNames);
 });
 
-// edit Modal EventListeners
+// set 'edit Modal' EventListeners
 
 document.getElementById('upd-name').addEventListener('keyup', function (e) {
   checkOk('upd-btn', 'upd-info', updFieldNames);

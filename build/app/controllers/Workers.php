@@ -28,11 +28,11 @@
 
       public function addWorker($name, $surName, $position, $salary=0, $description=' ')
       {
-          $d = $this->workerModel->addWorker($name, $surName, $position, $salary, $description);
+          $d = $this->workerModel->addWorker($name, $surName, $position, $salary=0, $description);
       }
 
 
-      public function updateWorker($id, $name, $surName, $position, $salary, $description=' ')
+      public function updateWorker($id, $name, $surName, $position, $salary=0, $description=' ')
       {
           $d = $this->workerModel->updateWorker($id, $name, $surName, $position, $salary, $description);
       }
@@ -54,7 +54,7 @@
               echo '<td>'.$d['salary'].'</td>';
               echo '<td><button  class="btn btn-info" data-toggle="modal" data-target="#editModal" onclick="viewPosition('.$d['id'].')">
                        <i class="fa fa-edit"></i></button></td>';
-              echo '<td><button class="btn btn-danger" onclick="delPosition('.$d['id'].')">
+              echo '<td><button class="btn btn-danger  d-none d-lg-block" onclick="delPosition('.$d['id'].')">
                        <i class="fa fa-user-times"></i></button></td>';
               echo '</tr>';
               $i++;
@@ -67,5 +67,29 @@
           $data = $this->workerModel->showWorker($id);
 
           echo '{"id":"'.$data['id'].'", "name":"'.$data['name'] . '", "surname":"'.$data['surname'] . '", "position_id":"'.$data['position_id']. '", "salary":"'.$data['salary'] . '", "Characteristics":"'.$data['Characteristics'].'"}';
+      }
+
+      public function checkWorker($name, $sname, $salary=0)
+      {
+          $ok=true;
+          $moneyPattern      =  '/^[0-9]{1}[\d]*[.]{0,1}\d{0,2}$/'; // XX.XX
+          $lettersOnlyPattern = '/^[a-zа-яё]+$/iu'; //letters no spases
+
+          $fields = array(
+          'name'=>preg_match($lettersOnlyPattern, $name, $matches, PREG_OFFSET_CAPTURE),
+          'sname'=>preg_match($lettersOnlyPattern, $sname, $matches, PREG_OFFSET_CAPTURE),
+          'salary'=>preg_match($moneyPattern, $salary, $matches, PREG_OFFSET_CAPTURE)
+           );
+
+          foreach ($fields as $field) {
+              if (!$field) {
+                  $ok=false;
+              }
+          }
+          if ($ok) {
+              echo "ok";
+          } else {
+              echo "no";
+          }
       }
   }

@@ -8,7 +8,7 @@ $siteN='<span  class="text-danger font-weight-bold">'.$s[0].'</span> '.$s[1];
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse"id="navbarsExampleDefault">
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" id="home-pg">
             <a class="nav-link" href="<?php echo URLROOT; ?>">Домашняя</a>

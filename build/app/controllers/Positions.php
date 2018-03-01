@@ -56,9 +56,6 @@
               echo '</tr>';
               $i++;
           }
-
-          //$this->view('editors/position', $data);
-          // }
       }
 
       public function echoPosition($id)
@@ -67,5 +64,16 @@
           $data = $this->positionModel->showPosition($id);
 
           echo '{"id":"'.$data['id'].'", "name":"'.$data['pos_name'].'", "description":"'.$data['description'].'"}';
+      }
+
+      public function checkPosition($field)
+      {
+          $r = preg_match('/^[a-zа-яё]+$/iu', 'foobarb', $matches, PREG_OFFSET_CAPTURE);
+
+          if ($r) {
+              echo 'ok'; // valid
+          } else {
+              echo 'no'; // not valid
+          }
       }
   }

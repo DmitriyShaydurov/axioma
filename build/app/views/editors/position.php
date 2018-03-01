@@ -3,7 +3,7 @@
 
 
 <!-- Positions -->
-  <section  class="mt-4" id="posts">
+  <section  class="my-4" id="posts">
     <div class="container">
       <div class="row">
         <div class="col">
@@ -13,8 +13,9 @@
               <a href="details.html" class="btn btn-success" data-toggle="modal" data-target="#addModal" >
                 <i class="fa fa-users"></i> Добавить
               </a>
-            </div>
 
+            </div>
+            <button id="server-err" onclick="serverErr()" class="btn btn-danger btn-block d-none">Должность не добавлена, обратитесь к администратору сервера.</button>
             <table class="table  table-striped">
               <thead class="thead-inverse">
                 <tr>
@@ -75,7 +76,7 @@
           <span id='add-info' class="text-center bg-info text-white">Заполните форму для выполнения операции</span>
         <div class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <input id= "add-btn" type="submit" value= "Добавить" class="btn btn-success d-none" data-dismiss="modal" onclick="addPosition()">
+          <input id= "add-btn" type="submit" value= "Добавить" class="btn btn-success d-none" data-dismiss="modal" onclick="serverCheck(true)">
         </div>
       </div>
     </div>
@@ -110,7 +111,7 @@
         <span id='upd-info' class="text-center bg-info text-white">Заполните форму для выполнения операции</span>
         <div class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <button id="save-pos" class="btn btn-primary d-none" data-dismiss="modal" onclick="updatePosition()">Сохранить</button>
+          <button id="save-pos" class="btn btn-primary d-none" data-dismiss="modal" onclick="serverCheck(false)">Сохранить</button>
         </div>
       </div>
     </div>

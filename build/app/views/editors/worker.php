@@ -3,15 +3,15 @@
 
 
 <!-- Workers -->
-  <section  class=" mt-4" id="posts">
+  <section  class=" my-4" id="posts">
     <div class="container">
       <div class="row">
         <div class="col">
           <div class="card text-dark bg-light d-none d-md-block">
             <div class="card-header">
               <h4>Cписок работников</h4>
-                  <div class="container">
-                    <div class="row">
+                  <!-- <div class="container"> -->
+                    <!-- <div class="row"> -->
 
                     <?php
                         if ($data['positions']) {
@@ -24,12 +24,8 @@
                           </a>';
                         }
                     ?>
-              <!-- <a href="details.html" class="btn btn-success" data-toggle="modal" data-target="#addModal" >
-                <i class="fa fa-users"></i> Добавить должности
-              </a> -->
-
             </div>
-
+            <button id="server-err" onclick="serverErr()" class="btn btn-danger btn-block d-none" >Работник не добавлен, обратитесь к администратору сервера.</button>
             <table class="table  table-striped">
               <thead class="thead-inverse">
                 <tr id="tbl-header">
@@ -60,7 +56,7 @@
                       echo '<td><button  class="btn btn-info" data-toggle="modal" data-target="#editModal" onclick="viewPosition('.$d['id'].')">
                            <i class="fa fa-edit"></i></button></td>';
                       // echo '<td><a href="details.html" class="btn btn-danger" id="'.$d['id'] .'">
-                      echo '<td><button class="btn btn-danger" onclick="delPosition('.$d['id'].')">
+                      echo '<td><button class="btn btn-danger d-none d-lg-block" onclick="delPosition('.$d['id'].')">
                            <i class="fa fa-user-times"></i></button></td>';
                       echo '</tr>';
                       $i++;
@@ -71,7 +67,6 @@
             <?php require APPROOT . '/views/inc/notice.php'; ?>
         </div>
       </div>
-    </div>
 
   <!-- Add MODAL -->
   <div class="modal fade" id="addModal">
@@ -124,7 +119,7 @@
         <span id='add-info' class="text-center bg-info text-white">Заполните форму для выполнения операции</span>
         <div class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <button id= "add-btn" class="btn btn-success d-none" data-dismiss="modal" onclick="addWorker()">Добавить</button>
+          <button id= "add-btn" class="btn btn-success d-none" data-dismiss="modal" onclick="serverCheck(true)">Добавить</button>
         </div>
       </div>
     </div>
@@ -180,12 +175,11 @@
         <span id='upd-info' class="text-center bg-info text-white">Заполните форму для выполнения операции</span>
         <div  class="modal-footer">
           <button class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-          <button id="upd-btn" class="btn btn-info" data-dismiss="modal" onclick="updateWorker()">Сохранить</button>
+          <button id="upd-btn" class="btn btn-info" data-dismiss="modal" onclick="serverCheck(false)">Сохранить</button>
         </div>
       </div>
     </div>
   </div>
-
 
   </section>
 <script>const pageName='workers';</script>

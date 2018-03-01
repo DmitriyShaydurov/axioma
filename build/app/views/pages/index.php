@@ -59,7 +59,7 @@
       <div class="row">
         <div class="col text-center">
           <div class="py-5">
-            <h1 class="display-4">Фотографии</h1>
+            <h2 class="display-4">Фотографии</h2>
             <p class="lead">
               Фотографии взяты с сайта pixels.com. Имиджи распространяются по лицензии CC0 которая предполагает бесплатное
               использование для любых целей. Особая благодарность  <a href="https://www.pexels.com/photo/people-coffee-meeting-team-7096/"> Eric Bailey,</a>  <a href="https://www.pexels.com/photo/adult-book-business-cactus-297755/">rawpixel.com</a></p>
@@ -108,9 +108,9 @@
       <div class="row">
         <div class="col text-center">
           <div class="py-5">
-            <h1 class="display-4">Итог</h1>
+            <h2 class="display-4">Итог</h2>
             <p class="lead">Создано легко масштабируемое приложение, с использованием современных технологий. Код сайта, MySQL дамп базы данных, подробное описание задания размещены на Git Hub.</p>
-            <a href="#" class="btn btn-outline-light">Cмотреть на Git Hub</a>
+            <a href="https://github.com/DmitriyShaydurov/axioma" class="btn btn-outline-light">Cмотреть на Git Hub</a>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-# Example app on MVC framework
+# Example app on MVC pattern
 
 Includes complete Bootstrap  dev environment with gulp, babel and sass
 
@@ -23,5 +23,5 @@ Files are compiled into /build
 ## Installation
 
 Change config.php as described;
-import db from \db directory
+import db from \db directory;
 change   RewriteBase in \build\public\.htaccess
