@@ -1,4 +1,10 @@
 <?php
+/*
+ * Model for position view
+ * Perfoms CRUD operations
+ * function names are pretty much self explanatory, so if you see name  getPositions
+ * function does just that : gets positions from db)
+ */
   class Position
   {
       private $db;
@@ -74,13 +80,4 @@
               return false;
           }
       }
-
-      // public function getPostById($id){
-      //   $this->db->query('SELECT * FROM posts WHERE id = :id');
-      //   $this->db->bind(':id', $id);
-      //
-      //   $row = $this->db->single();
-      //
-      //   return $row;
-      // }
   }

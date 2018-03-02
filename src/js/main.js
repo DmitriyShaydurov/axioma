@@ -1,6 +1,6 @@
 // prepare regExps for validation
 const lettersPattern = /^[a-zа-яё\s]+$/iu; //letters only
-const moneyPattern      =  /^[1-9]{1}[\d]*[.]{0,1}\d{0,2}$/; // XX.XX
+const moneyPattern      =  /^[0-9]{1}[\d]*[.]{0,1}\d{0,2}$/; // XX.XX
 const lettersOnlyPattern = /^[a-zа-яё]+$/iu; //letters no spases
 
 // fields to be checked when adding worker
@@ -9,7 +9,7 @@ const addFieldNames = ['wrkr-name', 'wrkr-sur-name', 'wrkr-slr'];
 // fields to be checked when updating worker
 const updFieldNames = ['upd-name', 'upd-sur-name', 'upd-slr'];
 
-// fields to be checked when adding positio
+// fields to be checked when adding position
 const addWrFieldNames = ['pos-name'];
 
 // fields to be checked when updating position
@@ -47,19 +47,20 @@ function ajaxGet(vars) {
       };
 
   hr.send(vars);
-  console.log('from ajaxGet' + vars);
 }
 
+// prepare url for delite action qnd make a call to server
 function delPosition(id) {
+
   let vars = urlRoot + delAction + id;
   ajaxGet(vars);
 }
 
+// prepare url for echo workers/positions action qnd make a call to server
 function showPositions() {
 
   let vars = urlRoot + showAction + showParams;
   let hr = new XMLHttpRequest();
-
   hr.open('GET', vars, true);
   hr.onreadystatechange = function () {
         if (hr.readyState == 4 && hr.status ==  200) {
@@ -73,6 +74,7 @@ function showPositions() {
 
 // hide or show specifyed button and show information lines
 function checkOk(button, infLine, fnames) {
+
   let but = document.getElementById(button);
   let inf = document.getElementById(infLine);
   let ok;
@@ -98,6 +100,7 @@ function checkOk(button, infLine, fnames) {
 
 // validate field  in acordance with RegExp
 function checked(id, pattern) {
+
   let ok = false;
   let name = document.getElementById(id);
   let re = pattern; //assign RegExp
@@ -125,6 +128,7 @@ function checked(id, pattern) {
 
 // set 'is-valid' class if field value is correct and 'is-invalid' if not
 function  setFieldClass(name, ok) {
+
   if (!ok) {
     if (!name.classList.contains('is-invalid')) {
       name.classList.add('is-invalid');
@@ -139,10 +143,11 @@ function  setFieldClass(name, ok) {
     }
   }
 
-  // return;
 }
 
+// show warning if fail server check
 function serverErr() {
+
   document.getElementById('server-err').classList.add('d-none');
 }
 

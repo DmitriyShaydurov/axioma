@@ -8,4 +8,3 @@
             <a href="<?php echo URLROOT; ?>" class="btn btn-info btn-block">Домой</a>
         </div>
    </div>
-  </div>

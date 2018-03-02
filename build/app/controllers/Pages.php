@@ -1,11 +1,10 @@
 <?php
-
+/*
+ * Cotroller for pages which do not require db access
+ * Loads views
+ */
   class Pages extends Controller
   {
-      public function __construct()
-      {
-      }
-
       public function index()
       {
           $data = [
@@ -15,23 +14,4 @@
 
           $this->view('pages/index', $data);
       }
-
-      public function workers()
-      {
-          $data = [
-          'title' => 'Работники',
-          'description' => 'Просмотр работников'
-          ];
-
-          $this->view('pages/workers', $data);
-      }
-      // public function positions()
-      // {
-      //     $data = [
-      //     'title' => 'Должности',
-      //     'description' => 'Просмотр и корректировка должностей'
-      //     ];
-      //
-      //     $this->view('pages/positions', $data);
-      // }
   }

@@ -20,11 +20,5 @@ $siteN='<span  class="text-danger font-weight-bold">'.$s[0].'</span> '.$s[1];
             <a class="nav-link" href="<?php echo URLROOT; ?>/Positions/showPositions">Должности</a>
           </li>
         </ul>
-        <!-- <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="">About</a>
-          </li>
-        </ul> -->
-
       </div>
     </nav>

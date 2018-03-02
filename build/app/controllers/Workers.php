@@ -1,4 +1,11 @@
 <?php
+/*
+ * Cotroller for workers view
+ * Prepares data CRUD operations
+ * Loads views and models
+ * function names are pretty much self explanatory, so if you see name deliteWorker
+ * function does just that : delites worker)
+ */
   class Workers extends Controller
   {
       public function __construct()
@@ -39,11 +46,11 @@
 
       public function echoWorkers($sort='ASC', $pos='id')
       {
+
           // Get workers
           $data = $this->workerModel->getWorkers($sort, $pos);
 
           // form view
-
           $i=1;
           foreach ($data as $d) {
               echo '<tr id="'.$d['id'].'">';
@@ -66,6 +73,7 @@
           // Get positions
           $data = $this->workerModel->showWorker($id);
 
+          // Prepare JSON answer for a View
           echo '{"id":"'.$data['id'].'", "name":"'.$data['name'] . '", "surname":"'.$data['surname'] . '", "position_id":"'.$data['position_id']. '", "salary":"'.$data['salary'] . '", "Characteristics":"'.$data['Characteristics'].'"}';
       }
 

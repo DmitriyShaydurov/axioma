@@ -36,7 +36,6 @@
                       echo '<td>'.$d['description'].'</td>';
                       echo '<td><button  class="btn btn-info" data-toggle="modal" data-target="#editModal" onclick="viewPosition('.$d['id'].')">
                            <i class="fa fa-edit"></i></button></td>';
-                      // echo '<td><a href="details.html" class="btn btn-danger" id="'.$d['id'] .'">
                       echo '<td><button class="btn btn-danger" onclick="delPosition('.$d['id'].')">
                            <i class="fa fa-user-times"></i></button></td>';
                       echo '</tr>';
@@ -47,10 +46,9 @@
           </div>
             <?php require APPROOT . '/views/inc/notice.php'; ?>
       </div>
-    </div>
-
-
-
+     </div>
+   </div>
+  </section>
   <!-- Add MODAL -->
   <div class="modal fade" id="addModal">
     <div class="modal-dialog modal-lg">
@@ -116,7 +114,5 @@
       </div>
     </div>
   </div>
-
-  </section>
 <script>const pageName='positions';</script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

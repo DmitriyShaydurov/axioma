@@ -1,10 +1,12 @@
 
-const posList     = document.querySelector('.collection');
-const delAction   = '/Positions/deletePosition/';
-const showAction  = '/Positions/echoPositions/';
+const posList     = document.querySelector('.collection');// get tbody
+const delAction   = '/Positions/deletePosition/';//controller&model call for delete action
+const showAction  = '/Positions/echoPositions/';//controller&model call for show action
 const showParams  = '';
 
+// prepare url for echoPosition action qnd make a call to server
 function viewPosition(id) {
+
   let description = document.getElementById('upd-description');
   let posId = document.getElementById('upd-id');
   let name = document.getElementById('upd-pos-name');
@@ -24,22 +26,22 @@ function viewPosition(id) {
 
 }
 
+// prepare url for addPosition controller method and make a call to server
 function addPosition(name, description) {
-  // let name =   document.getElementById('pos-name').value;
-  // let description =  document.getElementById('description').value;
+
   let vars = `${urlRoot}/Positions/addPosition/${name}/${description}`;
   ajaxGet(vars);
 }
 
+// prepare url for updatePosition controller method and make a call to server
 function updatePosition(name, description, id) {
-  // let name =  document.getElementById('upd-pos-name').value;
-  // let description =  document.getElementById('upd-description').value;
-  // let id =  document.getElementById('upd-id').value;
+
   let vars = `${urlRoot}/positions/updatePosition/${id}/${name}/${description}`;
   ajaxGet(vars);
 }
 
 function allFieldsOk(fieldNames) {
+
   if (checked(fieldNames[0], lettersPattern)) {
     return true;
   }else {
@@ -48,9 +50,10 @@ function allFieldsOk(fieldNames) {
 
 }
 
-// perform server check,if passed - run addPosition or updatePosition metod
+// perform server check,if passed - run addPosition or updatePosition method
 // if not passed display message
 function serverCheck(add) {
+
   let name;
   let description;
   let id;

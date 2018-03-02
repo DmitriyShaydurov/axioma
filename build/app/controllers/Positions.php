@@ -1,4 +1,11 @@
 <?php
+/*
+ * Cotroller for position view
+ * Prepares data for CRUD operations
+ * Loads views and models
+ * function names are pretty much self explanatory, so if you see name delitePosition
+ * function does just that : delites position)
+ */
   class Positions extends Controller
   {
       public function __construct()
@@ -41,7 +48,6 @@
           $data = $this->positionModel->getPositions();
 
           // form view
-
           $i=1;
           foreach ($data as $d) {
               echo '<tr id="'.$d['id'].'">';
@@ -50,7 +56,6 @@
               echo '<td>'.$d['description'].'</td>';
               echo '<td><button  class="btn btn-info" data-toggle="modal" data-target="#editModal" onclick="viewPosition('.$d['id'].')">
                        <i class="fa fa-edit"></i></button></td>';
-              // echo '<td><a href="details.html" class="btn btn-danger" id="'.$d['id'] .'">
               echo '<td><button class="btn btn-danger" onclick="delPosition('.$d['id'].')">
                        <i class="fa fa-user-times"></i></button></td>';
               echo '</tr>';

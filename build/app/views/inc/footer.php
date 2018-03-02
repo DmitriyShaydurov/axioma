@@ -1,5 +1,4 @@
-  <!-- </div> -->
-  <!-- MAIN FOOTER -->
+ <!-- MAIN FOOTER -->
   <footer id="main-footer" class="bg-dark">
     <div class="container">
       <div class="row">

@@ -1,4 +1,11 @@
 <?php
+/*
+ * Model for worker view
+ * Perfoms CRUD operations
+ * function names are pretty much self explanatory, so if you see name  getWorkers
+ * function does just that : gets gets workers from db)
+ */
+
   class Worker
   {
       private $db;
@@ -98,13 +105,4 @@
 
           return $results;
       }
-
-      // public function getPostById($id){
-      //   $this->db->query('SELECT * FROM posts WHERE id = :id');
-      //   $this->db->bind(':id', $id);
-      //
-      //   $row = $this->db->single();
-      //
-      //   return $row;
-      // }
   }

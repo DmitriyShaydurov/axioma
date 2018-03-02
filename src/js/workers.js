@@ -8,13 +8,14 @@ const tableHeader = document.getElementById('tbl-header').innerHTML;// get tr
 let showParams  = '';
 
 //initialize varibles for sort buttons
-let sortNameBtn = '';
+let sortNameBtn  = '';
 let sortSnameBtn = '';
-let sortPosBtn = '';
-let sortSalBtn = '';
+let sortPosBtn   = '';
+let sortSalBtn   = '';
 
 // Make Ajax call to server to get current workers list
 function viewPosition(id) {
+
   let name        =   document.getElementById('upd-name');
   let surName     =   document.getElementById('upd-sur-name');
   let position    =   document.getElementById('upd-pos');
@@ -42,14 +43,8 @@ function viewPosition(id) {
 
 }
 
-//Prepare & send call of addWorker model method
+//Prepare & send call of addWorker controller method
 function addWorker(name, surName, position, salary, description) {
-  //
-  // let name        =   document.getElementById('wrkr-name');
-  // let surName     =   document.getElementById('wrkr-sur-name');
-  // let position    =   document.getElementById('wrkr-pos');
-  // let salary      =   document.getElementById('wrkr-slr');
-  // let description =   document.getElementById('wrkr-desc');
 
   let vars =
   `${urlRoot}/Workers/addWorker/${name}/${surName}/
@@ -57,23 +52,17 @@ function addWorker(name, surName, position, salary, description) {
   ajaxGet(vars);
 }
 
-//Prepare & send call of updateWorker model method
+//Prepare & send call of updateWorker controller method
 function updateWorker(wId, name, surName, position, salary, description) {
-  // let wId         =   document.getElementById('upd-id').value;
-  // let name        =   document.getElementById('upd-name').value;
-  // let surName     =   document.getElementById('upd-sur-name').value;
-  // let position    =   document.getElementById('upd-pos').value;
-  // let salary      =   document.getElementById('upd-slr').value;
-  // let description =   document.getElementById('upd-desc').value;
 
   let vars =
   `${urlRoot}/Workers/updateWorker/${wId}/${name}/${surName}/${position}/${salary}/${description}`;
-
   ajaxGet(vars);
 }
 
 // switch sort buttons
 function SortButtonsStatus(btn, btnName) {
+
   // get innitial status
   let tblHdr = document.getElementById('tbl-header');
   tblHdr.innerHTML = tableHeader;
@@ -124,6 +113,7 @@ function SortButtonsStatus(btn, btnName) {
 
 // change btn status from up to down and vice versa
 function btnSwitch(btn) {
+
   switch (btn) {
   case '':
     return 'DESC';
@@ -169,7 +159,9 @@ function sort(param) {
 
 }
 
+//Validate if all fields set OK
 function allFieldsOk(fieldNames) {
+
   if (checked(fieldNames[0], lettersOnlyPattern) &&
       checked(fieldNames[1], lettersOnlyPattern) &&
       checked(fieldNames[2], moneyPattern)) {
@@ -210,7 +202,6 @@ function serverCheck(add) {
   hr.onreadystatechange = function () {
           if (hr.readyState == 4 && hr.status ==  200) {
             let response = hr.responseText;
-            console.log(response);
             if (response == 'ok') {
               if (add) {
                 addWorker(name, surName, position, salary, description);
@@ -245,7 +236,6 @@ document.getElementById('wrkr-slr').addEventListener('keyup', function (e) {
 });
 
 // set 'edit Modal' EventListeners
-
 document.getElementById('upd-name').addEventListener('keyup', function (e) {
   checkOk('upd-btn', 'upd-info', updFieldNames);
 });

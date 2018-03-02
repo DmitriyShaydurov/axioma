@@ -10,9 +10,6 @@
           <div class="card text-dark bg-light d-none d-md-block">
             <div class="card-header">
               <h4>Cписок работников</h4>
-                  <!-- <div class="container"> -->
-                    <!-- <div class="row"> -->
-
                     <?php
                         if ($data['positions']) {
                             echo '  <a href="details.html" class="btn btn-success" data-toggle="modal" data-target="#addModal" >
@@ -25,7 +22,7 @@
                         }
                     ?>
             </div>
-            <button id="server-err" onclick="serverErr()" class="btn btn-danger btn-block d-none" >Работник не добавлен, обратитесь к администратору сервера.</button>
+            <button id="server-err" onclick="serverErr()" class="btn btn-danger btn-block d-none">Работник не добавлен, обратитесь к администратору сервера.</button>
             <table class="table  table-striped">
               <thead class="thead-inverse">
                 <tr id="tbl-header">
@@ -55,7 +52,6 @@
                       echo '<td>'.$d['salary'].'</td>';
                       echo '<td><button  class="btn btn-info" data-toggle="modal" data-target="#editModal" onclick="viewPosition('.$d['id'].')">
                            <i class="fa fa-edit"></i></button></td>';
-                      // echo '<td><a href="details.html" class="btn btn-danger" id="'.$d['id'] .'">
                       echo '<td><button class="btn btn-danger d-none d-lg-block" onclick="delPosition('.$d['id'].')">
                            <i class="fa fa-user-times"></i></button></td>';
                       echo '</tr>';
@@ -67,7 +63,8 @@
             <?php require APPROOT . '/views/inc/notice.php'; ?>
         </div>
       </div>
-
+    </div>
+  </section>
   <!-- Add MODAL -->
   <div class="modal fade" id="addModal">
     <div class="modal-dialog modal-lg">
@@ -180,7 +177,5 @@
       </div>
     </div>
   </div>
-
-  </section>
 <script>const pageName='workers';</script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
